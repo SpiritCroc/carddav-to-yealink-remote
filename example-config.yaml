@@ -1,0 +1,23 @@
+# carddav download configuration
+dav_url: "https://your.nextcloud.example.com/nextcloud/remote.php/dav"
+dav_user: "nextcloud_username"
+dav_passwd: "nextcloud_password"
+vcf_remote_path: "/nextcloud/remote.php/dav/addressbooks/users/nextcloud_username/contacts/?export"
+
+# carddav parsing: map number types to better readable names
+map_number_types:
+  home: "Privat"
+  cell: "Mobil"
+  x-mobil: "Mobil"
+  work: "Arbeit"
+  voice: "Andere"
+  other: "Andere"
+
+# xml webserver configuration
+listen_host: "0.0.0.0"
+listen_port: 22080
+listen_path: "/"
+# If you want to allow all urls, remove ip_whitelist completely.
+ip_whitelist:
+  - "127.0.0.1"
+  - "192.168.0.42"
