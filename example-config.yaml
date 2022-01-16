@@ -2,6 +2,7 @@
 dav_url: "https://your.nextcloud.example.com/nextcloud/remote.php/dav"
 dav_user: "nextcloud_username"
 dav_passwd: "nextcloud_password"
+dav_update_interval: 1200
 vcf_remote_path: "/nextcloud/remote.php/dav/addressbooks/users/nextcloud_username/contacts/?export"
 
 # carddav parsing: map number types to better readable names
