@@ -20,6 +20,10 @@ def vcf_to_xml(config, vcf):
         map_number_types = config["map_number_types"]
     else:
         map_number_types = dict()
+    if "country_code" in config:
+        country_code = config["country_code"]
+    else:
+        country_code = None
 
     result = "<YealinkIPPhoneDirectory>\n"
 
@@ -63,8 +67,8 @@ def vcf_to_xml(config, vcf):
                 value = value.replace("-", "")
                 if value.startswith("+"):
                     value = value.replace("+", "00", 1)
-                if value.startswith("0049"):
-                    value = value.replace("0049", "0", 1)
+                if country_code != None and value.startswith(country_code):
+                    value = value.replace(country_code, "0", 1)
                 result += f'    <Telephone label="{ntype}">{value}</Telephone>\n'
 
             result += '  </DirectoryEntry>\n'

@@ -13,12 +13,14 @@ map_number_types:
   work: "Arbeit"
   voice: "Andere"
   other: "Andere"
+# Remove country dialing code, so reverse lookup works properly for in-country calls
+country_code: "0049"
 
 # xml webserver configuration
 listen_host: "0.0.0.0"
 listen_port: 22080
 listen_path: "/"
-# If you want to allow all urls, remove ip_whitelist completely.
+# List of IPs which are allowed to access contacts. If you don't want to restrict specific IPs but allow access for all, remove ip_whitelist completely.
 ip_whitelist:
   - "127.0.0.1"
   - "192.168.0.42"
