@@ -40,7 +40,7 @@ This project includes code found in following repos:
 - https://github.com/ljanyst/carddav-util  
     License:
     ```
-    Copyright (c) 2012 by Lukasz Janyst &lt;ljanyst@buggybrain.net&gt;
+    Copyright (c) 2012 by Lukasz Janyst <ljanyst@buggybrain.net>
 
     Permission to use, copy, modify, and/or distribute this software for any
     purpose with or without fee is hereby granted, provided that the above
