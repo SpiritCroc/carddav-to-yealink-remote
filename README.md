@@ -18,12 +18,16 @@ To enable the remote contacts, on your phone's web interface:
 - Directory / Remote Phone Book -> add URL, enable call lookup
 - Directory / Settings -> Move Remote Phone Book to enabled sections
 
+
 ## Dependencies (e.g. on Debian)
+
 ```bash
 apt install python3 (>= 3.6) python3-yaml (>= 5.1) python3-flask python3-waitress python3-lxml python3-vobject python3-requests
 ```
 
-## run as systemd service
+
+## Systemd service
+
 ```bash
 cp carddav-to-yealink.service.example /etc/systemd/system/carddav-to-yealink.service
 sed -i "s#%USER%#carddav_bridge#g; s#%PATH%#$PWD#g" /etc/systemd/system/carddav-to-yealink.service # change user and path to your needs
@@ -32,6 +36,7 @@ systemctl daemon-reload
 systemctl start carddav-to-yealink.service
 systemctl enable carddav-to-yealink.service
 ```
+
 
 ## Acknowledgements:
 
