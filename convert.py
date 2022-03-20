@@ -30,6 +30,8 @@ def vcf_to_xml(config, vcf):
     for vcard in vcards:
         input_counter += 1
         numbers = []
+        givenname = ''
+        familyname = ''
         for p in vcard.getChildren():
             if p.name == "N":
                 givenname = p.value.given
