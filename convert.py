@@ -9,6 +9,7 @@
 # Directory / Settings -> Move Remote Phone Book to enabled sections
 
 import vobject
+from html import escape
 
 
 def vcf_to_xml(config, vcf):
@@ -61,18 +62,17 @@ def vcf_to_xml(config, vcf):
                 print("Unsupported name format, TODO support me... ")
                 continue
             result += '  <DirectoryEntry>\n'
-            result += f'    <Name>{name}</Name>\n'
+            result += f'    <Name>{escape(name)}</Name>\n'
 
             for n in numbers:
                 ntype, value = n
                 # Normalize numbers
-                value = value.replace(" ", "")
-                value = value.replace("-", "")
+                value = value.replace(" ", "").replace("-", "")
                 if value.startswith("+"):
                     value = value.replace("+", "00", 1)
                 if country_code and value.startswith(country_code):
                     value = value.replace(country_code, "0", 1)
-                result += f'    <Telephone label="{ntype}">{value}</Telephone>\n'
+                result += f'    <Telephone label="{escape(ntype)}">{escape(value)}</Telephone>\n'
 
             result += '  </DirectoryEntry>\n'
 
