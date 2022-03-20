@@ -211,7 +211,7 @@ class PyCardDAV(object):
         result = self.session.delete(remotepath,
                                      headers=headers,
                                      **self._settings)
-        raise_for_status(response)
+        raise_for_status(result)
 
     def upload_new_card(self, card):
         """
