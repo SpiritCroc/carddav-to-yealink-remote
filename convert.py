@@ -10,6 +10,7 @@
 
 import vobject
 
+
 def vcf_to_xml(config, vcf):
     vcards = vobject.readComponents(vcf)
 
@@ -39,7 +40,7 @@ def vcf_to_xml(config, vcf):
             if p.name == "TEL":
                 try:
                     itype = p.type_param.lower()
-                except:
+                except Exception:
                     itype = "other"
                 if itype in map_number_types:
                     ntype = map_number_types[itype]
@@ -49,12 +50,12 @@ def vcf_to_xml(config, vcf):
                 t = ntype, p.value
                 numbers.append(t)
 
-        if len(numbers) > 0:
+        if numbers:
             output_counter += 1
 
-            if givenname != "" and familyname != "":
+            if givenname and familyname:
                 name = f"{familyname}, {givenname}"
-            elif givenname != "":
+            elif givenname:
                 name = givenname
             else:
                 print("Unsupported name format, TODO support me... ")
@@ -69,7 +70,7 @@ def vcf_to_xml(config, vcf):
                 value = value.replace("-", "")
                 if value.startswith("+"):
                     value = value.replace("+", "00", 1)
-                if country_code != None and value.startswith(country_code):
+                if country_code and value.startswith(country_code):
                     value = value.replace(country_code, "0", 1)
                 result += f'    <Telephone label="{ntype}">{value}</Telephone>\n'
 

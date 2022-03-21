@@ -48,11 +48,13 @@ import logging
 import lxml.etree as ET
 import string
 
-def raise_for_status( resp ):
+
+def raise_for_status(resp):
     if 400 <= resp.status_code < 500 or 500 <= resp.status_code < 600:
-        msg  = 'Error code: ' + str(resp.status_code) + '\n'
+        msg = 'Error code: ' + str(resp.status_code) + '\n'
         msg += str(resp.content)
-        raise requests.exceptions.HTTPError( msg )
+        raise requests.exceptions.HTTPError(msg)
+
 
 def get_random_href():
     """returns a random href"""
@@ -112,8 +114,7 @@ class PyCardDAV(object):
         response = self.session.request('PROPFIND', resource,
                                         headers=self.headers,
                                         **self._settings)
-        raise_for_status( response )  #raises error on not 2XX HTTP status code
-
+        raise_for_status(response)  # raises error on not 2XX HTTP status code
 
     @property
     def verify(self):
@@ -170,7 +171,7 @@ class PyCardDAV(object):
         response = self.session.get(self.url.base + href,
                                     headers=self.headers,
                                     **self._settings)
-        raise_for_status( response )
+        raise_for_status(response)
         return response.content
 
     def update_vcard(self, card, href, etag):
@@ -180,7 +181,7 @@ class PyCardDAV(object):
         etag: str or None, if this is set to a string, card is only updated if
               remote etag matches. If etag = None the update is forced anyway
          """
-         # TODO what happens if etag does not match?
+        # TODO what happens if etag does not match?
         self._check_write_support()
         remotepath = str(self.url.base + href)
         headers = self.headers
@@ -210,7 +211,7 @@ class PyCardDAV(object):
         result = self.session.delete(remotepath,
                                      headers=headers,
                                      **self._settings)
-        raise_for_status( response )
+        raise_for_status(response)
 
     def upload_new_card(self, card):
         """
@@ -239,7 +240,7 @@ class PyCardDAV(object):
                     etag = response.headers['etag']
 
                 return (parsed_url.path, etag)
-        raise_for_status( response )
+        raise_for_status(response)
 
     def _get_xml_props(self):
         """PROPFIND method
@@ -252,7 +253,7 @@ class PyCardDAV(object):
                                         self.url.resource,
                                         headers=headers,
                                         **self._settings)
-        raise_for_status( response )
+        raise_for_status(response)
         if response.headers['DAV'].count('addressbook') == 0:
             raise Exception("URL is not a CardDAV resource")
 
@@ -265,7 +266,7 @@ class PyCardDAV(object):
         :type xml: str()
         :rtype: dict() key: href, value: etag
         """
-        xml = string.replace( xml, '<?xml version="1.0" encoding="utf-8"?>', '', 1 )
+        xml = string.replace(xml, '<?xml version="1.0" encoding="utf-8"?>', '', 1)
         namespace = "{DAV:}"
 
         element = ET.XML(xml)
