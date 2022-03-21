@@ -47,8 +47,7 @@ def vcf_to_xml(config, vcf):
                 else:
                     print(f"Warn: unknown type {itype} for {p.value}")
                     ntype = itype
-                t = ntype, p.value
-                numbers.append(t)
+                numbers.append((ntype, p.value))
 
         if numbers:
             output_counter += 1
@@ -57,6 +56,8 @@ def vcf_to_xml(config, vcf):
                 name = f"{familyname}, {givenname}"
             elif givenname:
                 name = givenname
+            elif familyname:
+                name = familyname
             else:
                 print("Unsupported name format, TODO support me... ")
                 continue
