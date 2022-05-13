@@ -1,0 +1,5 @@
+PyYAML
+flask
+waitress
+vobject
+requests

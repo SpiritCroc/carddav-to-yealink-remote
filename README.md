@@ -22,7 +22,7 @@ To enable the remote contacts, on your phone's web interface:
 ## Dependencies (e.g. on Debian)
 
 ```bash
-apt install python3 (>= 3.6) python3-yaml (>= 5.1) python3-flask python3-waitress python3-vobject python3-requests
+pip install -r requirements.txt
 ```
 
 
