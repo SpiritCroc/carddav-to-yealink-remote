@@ -1,6 +1,6 @@
 # carddav-to-yealink-remote-xml-addressbook
 
-Convert CardDav contacts to Yealink xml, and serve it as remove phone book.
+Convert CardDav contacts to Yealink xml, and serve it as remote phone book.
 
 Simple server that can request vcf contacts from a carddav server such as nextcloud,
 and serve it as xml for usage with Yealink SIP phones.
